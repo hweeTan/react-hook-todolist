@@ -1,6 +1,6 @@
 This project is an attempt to utilize hooks and context in order to replace redux/react-redux.
 
-## Ideology
+## The idea
 The main concept is to minimize the boilerplate code as much as possible and make state management ready to use with just a hook.
 
 Desired API:
@@ -19,7 +19,7 @@ const Counter = () => {
 ```
 
 ## Current approach
-At the moment, a combination of `useReducer`, `useMemo` and `useContext` is being used to achieve "redux-like" state management with actions creators and reducer. One hook would have 3 files: actions, reducer and index.
+At the moment, a combination of `useReducer`, `useMemo` and `useContext` is being used to achieve "redux-like" state management with actions creators and reducer. One hook would have 3 files: *actions*, *reducer* and *index*.
 
 **actions.js**
 ```js
