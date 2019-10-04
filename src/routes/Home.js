@@ -7,12 +7,11 @@ import { useStore } from 'utils/Store'
 const Home = React.memo(() => {
   const { counter, todo } = useStore()
   const { count, add, take } = counter
-  const { isLoading, tasks, addTask, deleteTask } = todo
+  const { tasks, addTask, deleteTask } = todo
   return (
     <div>
       <h1>Todo</h1>
       <ToDoList
-        isLoading={isLoading}
         tasks={tasks}
         addTask={addTask}
         deleteTask={deleteTask}

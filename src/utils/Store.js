@@ -16,7 +16,10 @@ export const createStore = (reducers, wares) => {
       }, {})
       storeValue = value
       return <context.Provider value={value}>{children}</context.Provider>
-    })
+    }),
+    useStore: () => {
+      return useContext(context)
+    }
   }
 }
 

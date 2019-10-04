@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const ToDoList = React.memo(({ tasks, isLoading, addTask, deleteTask }) => {
+const ToDoList = React.memo(({ tasks, addTask, deleteTask }) => {
   const [value, setValue] = useState('')
   const [testVal, setTestVal] = useState('')
 
@@ -24,17 +24,6 @@ const ToDoList = React.memo(({ tasks, isLoading, addTask, deleteTask }) => {
 
   return (
     <div>
-      {isLoading && (
-        <p
-          style={{
-            position: 'fixed',
-            top: 20,
-            right: 20
-          }}
-        >
-          ...Loading
-        </p>
-      )}
       <input
         type="text"
         value={value}
