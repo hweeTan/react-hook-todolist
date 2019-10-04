@@ -14,7 +14,7 @@ export const setLoading = isLoading => ({
 
 export const deleteTask = index => (dispatch, getState) => {
   const { todo } = getState()
-  console.log(todo)
+  console.log('log state from thunk', todo.tasks.length)
   dispatch(setLoading(true))
   setTimeout(() => {
     dispatch({

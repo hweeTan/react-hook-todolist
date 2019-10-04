@@ -1,6 +1,4 @@
-import { useReducer, useMemo } from 'react'
-
-import { createActions } from 'utils/Store'
+import { createHook } from 'utils/Store'
 
 import reducer from './reducer'
 import { addTask, deleteTask } from './actions'
@@ -10,16 +8,7 @@ export const initialState = {
   isLoading: false
 }
 
-export default () => {
-  const [state, dispatch] = useReducer(reducer, initialState)
-  return useMemo(
-    () => ({
-      ...state,
-      ...createActions(dispatch, {
-        addTask,
-        deleteTask
-      })
-    }),
-    [state]
-  )
-}
+export default createHook(initialState, reducer, {
+  addTask,
+  deleteTask
+})
