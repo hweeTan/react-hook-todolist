@@ -3,11 +3,10 @@ import { useReducer, useMemo } from 'react'
 import { createActions } from 'utils/Store'
 
 import reducer from './reducer'
-import { addTask, deleteTask } from './actions'
+import { add, take } from './actions'
 
 export const initialState = {
-  tasks: [],
-  isLoading: false
+  count: 0
 }
 
 export default () => {
@@ -16,8 +15,8 @@ export default () => {
     () => ({
       ...state,
       ...createActions(dispatch, {
-        addTask,
-        deleteTask
+        add,
+        take
       })
     }),
     [state]

@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 
-import { useStore } from 'utils/Store'
-
-const ToDoList = React.memo(() => {
-  const context = useStore()
-  const { isLoading, tasks, addTask, deleteTask } = context.todo
+const ToDoList = React.memo(({ tasks, isLoading, addTask, deleteTask }) => {
   const [value, setValue] = useState('')
+  const [testVal, setTestVal] = useState('')
+
+  console.log('render todo')
 
   const _addTask = () => {
     if (tasks.some(({ name }) => name === value)) {
@@ -41,6 +40,7 @@ const ToDoList = React.memo(() => {
         value={value}
         onChange={e => setValue(e.target.value)}
       />
+      <button onClick={() => setTestVal(Math.random())}>{testVal}</button>
       <button onClick={_addTask}>Add</button>
       {tasks.map(renderItem)}
     </div>

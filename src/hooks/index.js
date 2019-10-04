@@ -1,15 +1,13 @@
+import logger from 'redux-logger'
+
 import { createStore } from 'utils/Store'
 
 import useTodo from './todo'
+import useCounter from './counter'
 
-export const logger = () => next => action => {
-  console.log(action)
-  return next(action)
-}
-
-export const thunk = () => next => action => {
+export const thunk = store => next => action => {
   if (typeof action === 'function') {
-    return action(next)
+    return action(next, store.getState)
   }
 
   return next(action)
@@ -17,7 +15,8 @@ export const thunk = () => next => action => {
 
 const Store = createStore(
   {
-    todo: useTodo
+    todo: useTodo,
+    counter: useCounter
   },
   [logger, thunk]
 )

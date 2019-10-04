@@ -12,12 +12,9 @@ export const setLoading = isLoading => ({
   payload: { isLoading }
 })
 
-// export const deleteTask = index => ({
-//   type: DELETE_TASK,
-//   payload: { index }
-// })
-
-export const deleteTask = index => dispatch => {
+export const deleteTask = index => (dispatch, getState) => {
+  const { todo } = getState()
+  console.log(todo)
   dispatch(setLoading(true))
   setTimeout(() => {
     dispatch({
