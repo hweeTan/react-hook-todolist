@@ -3,8 +3,8 @@ import React, { useContext, useReducer, useMemo } from 'react'
 const context = React.createContext()
 context.displayName = 'StoreContext'
 let storeValue = {}
-const getState = () => storeValue
 let middlewares = []
+const getState = () => storeValue
 
 export const createStore = (reducers, wares) => {
   middlewares = wares.reverse()
@@ -26,20 +26,22 @@ export const useStore = () => {
 
 export const createActions = (dispatch, actionCreators) => {
   const store = { getState, dispatch }
-  middlewares.forEach(middleware => (dispatch = middleware(store)(dispatch)))
+  let next = dispatch
+  middlewares.forEach(middleware => (next = middleware(store)(next)))
   return Object.keys(actionCreators).reduce((r, key) => {
-    r[key] = (...args) => dispatch(actionCreators[key](...args))
+    r[key] = (...args) => next(actionCreators[key](...args))
     return r
   }, {})
 }
 
 export const createHook = (initialState, reducer, actions) => () => {
   const [state, dispatch] = useReducer(reducer, initialState)
+  const appliedActions = useMemo(() => createActions(dispatch, actions), [])
   return useMemo(
     () => ({
       ...state,
-      ...createActions(dispatch, actions)
+      ...appliedActions
     }),
-    [state]
+    [state, appliedActions]
   )
 }

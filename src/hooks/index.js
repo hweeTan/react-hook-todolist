@@ -1,4 +1,3 @@
-import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 
 import { createStore } from 'utils/Store'
@@ -11,7 +10,7 @@ const Store = createStore(
     todo: useTodo,
     counter: useCounter
   },
-  [thunk, logger]
+  [thunk]
 )
 
 export default Store
